@@ -1,8 +1,6 @@
+    #shopping_cart.py
 
-
-# shopping_cart.py
-
-#products = [
+products = [
 #    {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
 #    {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
 #    {"id":3, "name": "Robust Golden Unsweetened Oolong Tea", "department": "beverages", "aisle": "tea", "price": 2.49},
@@ -23,7 +21,30 @@
 #    {"id":18, "name": "Pizza for One Suprema Frozen Pizza", "department": "frozen", "aisle": "frozen pizza", "price": 12.50},
 #    {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
 #    {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
-# based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+
+
 #
-# TODO: write some Python code here to produce the desired functionality...
+#INFORMATION INPUT
+#
+
+selected_id = input("Please input a product identifier: ") #> "9" (string)
+print(selected_id)
+print(type(selected_id))
+
+#
+#INFORMATION OUPUT / DISPLAY
+#
+
+#TODO: write some code to output the required functionality
 print(products)
+
+
+#A grocery store name of your choice.
+#A grocery store phone number and/or website URL and/or address of choice.
+#The date and time of the beginning of the checkout process, formatted in a human-friendly way.
+#The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $1.50).
+#The total cost of all shopping cart items, formatted as US dollars and cents (e.g. $4.50), calculated as the sum of their prices.
+#The amount of tax owed, calculated by multiplying the total cost by a District of Columbia sales tax rate of 6%.
+#The total amount owed, formatted as US dollars and cents (e.g. $4.77), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items.
+#A friendly message thanking the customer and/or encouraging the customer to shop again.
