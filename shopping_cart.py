@@ -1,5 +1,11 @@
     #shopping_cart.py
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+tax_rate = os.getenv("TAX_RATE", default="0.0875")
+tax_rate = float(tax_rate)
+
 ##################
 #PRODUCT DATABASE#
 ##################
@@ -56,8 +62,10 @@ while True:
     else:
        selected_ids.append(selected_id)
 
+
 #############################
 #INFORMATION OUPUT / DISPLAY#
+#      WRITE INTO .TXT      #
 #############################
 
 import datetime
@@ -111,7 +119,7 @@ subtotal_usd = "${0:.2F}".format(subtotal_price)
 print("SUBTOTAL PRICE: " + subtotal_usd)
 f.write("SUBTOTAL PRICE: " + subtotal_usd + "\n")
 #calculate and print tax amount by using DC sales tax - 6%
-tax = subtotal_price * 0.0875
+tax = subtotal_price * tax_rate
 tax_usd = "${0:.2F}".format(tax)
 print("SALES TAX: " + tax_usd)
 f.write("SALES TAX: " + tax_usd + "\n")
