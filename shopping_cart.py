@@ -32,13 +32,27 @@ products = [
 #INFORMATION INPUT#
 ###################
 
+#Use a python dictionary to provide O(1) runtime product_id lookup
+#If we don't do that, runtime of product_id lookup would be O(N), which means
+#we have to go through the whole database each time we check one id
+database = {}
+for p in products:
+    key = str(p["id"])
+    database[key] = p
+#Source: https://www.w3schools.com/python/python_dictionaries.asp
+
 subtotal_price = 0
 selected_ids = []
 while True:
     selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> "9" (string)
-    #> "DONE"
+
     if selected_id == "DONE":
         break
+    
+    #Data Validation: if selected ids are not in the database, print error message
+    elif selected_id not in database:
+        print("Hey, are you sure that product identifier is correct? Please try again!")
+
     else:
        selected_ids.append(selected_id)
 
@@ -48,8 +62,8 @@ while True:
 
 #print grocery information
 print("---------------------------------")
-print("GREEN FOODS GROCERY")
-print("WWW.GREEN-FOODS-GROCERY.COM")
+print("SUNING FOODS GROCERY")
+print("WWW.SUNING-FOODS-GROCERY.COM")
 print("---------------------------------")
 
 #print current date & time
@@ -74,7 +88,7 @@ print("---------------------------------")
 subtotal_usd = "${0:.2F}".format(subtotal_price)
 print("SUBTOTAL PRICE: " + subtotal_usd)
 #calculate and print tax amount by using DC sales tax - 6%
-tax = subtotal_price * 0.06
+tax = subtotal_price * 0.0875
 tax_usd = "${0:.2F}".format(tax)
 print("SALES TAX: " + tax_usd)
 #calculate the total price by adding the subtotal to the tax amount
