@@ -28,7 +28,7 @@ products = [
 #INFORMATION INPUT
 #
 
-total_price = 0
+subtotal_price = 0
 selected_ids = []
 while True:
     selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> "9" (string)
@@ -60,15 +60,22 @@ print("SELECTED PRODUCTS:")
 for selected_id in selected_ids:
         matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
         matching_product = matching_products[0]
-        total_price = total_price + matching_product["price"]
+        subtotal_price = subtotal_price + matching_product["price"]
         price_usd = " (${0:.2F})".format(matching_product["price"])
         print(" + " + matching_product["name"] + " " + price_usd)
         
-        ##print(" + " + p["name"] + price_usd)
+#print subtotal price, sales tax, and total
+print("---------------------------------")
+subtotal_usd = "${0:.2F}".format(subtotal_price)
+print("SUBTOTAL PRICE: " + subtotal_usd)
+tax = subtotal_price * 0.06
+tax_usd = "${0:.2F}".format(tax)
+print("SALES TAX: " + tax_usd)
+total_price = subtotal_price + tax
+total_usd = "${0:.2F}".format(total_price)
+print("TOTAL PRICE: " + total_usd)
 
-total_usd = " (${0:.2F})".format(total_price))
-print("TOTAL PRICE: " + str(total_usd))
-
+#print ending phrase
 print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
