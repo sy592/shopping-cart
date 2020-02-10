@@ -31,7 +31,7 @@ products = [
 total_price = 0
 selected_ids = []
 while True:
-    selected_id = input("Please input a product identifier: ") #> "9" (string)
+    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> "9" (string)
     #> "DONE"
     if selected_id == "DONE":
         break
@@ -41,19 +41,49 @@ while True:
 #INFORMATION OUPUT / DISPLAY
 #
 
-#print(selected_ids)
+#print grocery information
+print("---------------------------------")
+print("GREEN FOODS GROCERY")
+print("WWW.GREEN-FOODS-GROCERY.COM")
+print("---------------------------------")
+
+#print current date & time
+import datetime
+now = datetime.datetime.now()
+print("CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p"))
+#Source: https://www.w3resource.com/python-exercises/python-basic-exercise-3.php
+
+#print selected products
+print("---------------------------------")
+print("SELECTED PRODUCTS:")
 
 for selected_id in selected_ids:
         matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
         matching_product = matching_products[0]
         total_price = total_price + matching_product["price"]
-        print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+        price_usd = " (${0:.2F})".format(matching_product["price"])
+        print(" + " + matching_product["name"] + " " + price_usd)
         
+        ##print(" + " + p["name"] + price_usd)
 
-print("TOTAL PRICE: " + str(total_price))
+total_usd = " (${0:.2F})".format(total_price))
+print("TOTAL PRICE: " + str(total_usd))
 
-#TODO: write some code to output the required functionality
-#print(products)
+print("---------------------------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("---------------------------------")
+
+#>  ... Chocolate Sandwich Cookies ($3.50)
+#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
+#>  ... Dry Nose Oil ($21.99)
+#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
+#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
+#>  ... Mint Chocolate Flavored Syrup ($4.50)
+#>  ... Chocolate Fudge Layer Cake ($18.50)
+#> ---------------------------------
+#> SUBTOTAL: $61.24
+#> TAX: $3.67
+#> TOTAL: $64.91
 
 
 #A grocery store name of your choice.
