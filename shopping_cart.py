@@ -60,43 +60,74 @@ while True:
 #INFORMATION OUPUT / DISPLAY#
 #############################
 
+import datetime
+import os
+now = datetime.datetime.now()
+filename = "receipts/" + now.strftime("%Y-%m-%d-%H-%M-%S-%f") + ".txt"
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+f = open(filename, 'w')
+#Source: https://www.w3schools.com/python/python_file_write.asp
+#Source: https://www.tutorialspoint.com/python3/time_strftime.htm
+#Source: https://stackoverflow.com/questions/12517451/automatically-creating-directories-with-file-output
+
 #print grocery information
 print("---------------------------------")
 print("SUNING FOODS GROCERY")
 print("WWW.SUNING-FOODS-GROCERY.COM")
 print("---------------------------------")
+f.write("---------------------------------\n")
+f.write("SUNING FOODS GROCERY\n")
+f.write("WWW.SUNING-FOODS-GROCERY.COM\n")
+f.write("---------------------------------\n")
 
 #print current date & time
-import datetime
-now = datetime.datetime.now()
-print("CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p"))
+time_str = "CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p")
+print(time_str)
+f.write(time_str + "\n")
 #Source: https://www.w3resource.com/python-exercises/python-basic-exercise-3.php
 
 #print selected products
 print("---------------------------------")
 print("SELECTED PRODUCTS:")
+f.write("---------------------------------\n")
+f.write("SELECTED PRODUCTS:\n")
 
 for selected_id in selected_ids:
-        matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-        matching_product = matching_products[0]
-        subtotal_price = subtotal_price + matching_product["price"]
-        price_usd = " (${0:.2F})".format(matching_product["price"])
-        print(" + " + matching_product["name"] + " " + price_usd)
+    # matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+    # matching_product = matching_products[0]
+
+    matching_product = database[selected_id] 
+
+    subtotal_price = subtotal_price + matching_product["price"]
+    price_usd = " (${0:.2F})".format(matching_product["price"])
+    item_str = " + " + matching_product["name"] + " " + price_usd
+    print(item_str)
+    f.write(item_str + "\n")
         
 #print subtotal price, sales tax, and total
 print("---------------------------------")
+f.write("---------------------------------\n")
 subtotal_usd = "${0:.2F}".format(subtotal_price)
 print("SUBTOTAL PRICE: " + subtotal_usd)
+f.write("SUBTOTAL PRICE: " + subtotal_usd + "\n")
 #calculate and print tax amount by using DC sales tax - 6%
 tax = subtotal_price * 0.0875
 tax_usd = "${0:.2F}".format(tax)
 print("SALES TAX: " + tax_usd)
+f.write("SALES TAX: " + tax_usd + "\n")
 #calculate the total price by adding the subtotal to the tax amount
 total_price = subtotal_price + tax
 total_usd = "${0:.2F}".format(total_price)
 print("TOTAL PRICE: " + total_usd)
+f.write("TOTAL PRICE: " + total_usd + "\n")
 
 #print ending phrase
 print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
+
+f.write("---------------------------------\n")
+f.write("THANKS, SEE YOU AGAIN SOON!\n")
+f.write("---------------------------------")
+
+f.close()

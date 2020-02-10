@@ -1,0 +1,18 @@
+---------------------------------
+GREEN FOODS GROCERY
+WWW.GREEN-FOODS-GROCERY.COM
+---------------------------------
+CHECKOUT AT: 2020-02-10 05:53:22 PM
+---------------------------------
+SELECTED PRODUCTS:
+ + Chocolate Sandwich Cookies  ($3.50)
+ + All-Seasons Salt  ($4.99)
+ + Robust Golden Unsweetened Oolong Tea  ($2.49)
+ + Chocolate Sandwich Cookies  ($3.50)
+---------------------------------
+SUBTOTAL PRICE: $14.48
+SALES TAX: $1.27
+TOTAL PRICE: $15.75
+---------------------------------
+THANKS, SEE YOU AGAIN SOON!
+---------------------------------

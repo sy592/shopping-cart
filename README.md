@@ -18,3 +18,5 @@ Run the program
 '''py
 python shopping_cart.py
 '''
+
+## Source: https://www.youtube.com/watch?v=3BaGb-1cIr0&feature=youtu.be
