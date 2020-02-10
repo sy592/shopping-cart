@@ -1,5 +1,9 @@
     #shopping_cart.py
 
+##################
+#PRODUCT DATABASE#
+##################
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -24,9 +28,9 @@ products = [
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 
-#
-#INFORMATION INPUT
-#
+###################
+#INFORMATION INPUT#
+###################
 
 subtotal_price = 0
 selected_ids = []
@@ -37,9 +41,10 @@ while True:
         break
     else:
        selected_ids.append(selected_id)
-#
-#INFORMATION OUPUT / DISPLAY
-#
+
+#############################
+#INFORMATION OUPUT / DISPLAY#
+#############################
 
 #print grocery information
 print("---------------------------------")
@@ -68,9 +73,11 @@ for selected_id in selected_ids:
 print("---------------------------------")
 subtotal_usd = "${0:.2F}".format(subtotal_price)
 print("SUBTOTAL PRICE: " + subtotal_usd)
+#calculate and print tax amount by using DC sales tax - 6%
 tax = subtotal_price * 0.06
 tax_usd = "${0:.2F}".format(tax)
 print("SALES TAX: " + tax_usd)
+#calculate the total price by adding the subtotal to the tax amount
 total_price = subtotal_price + tax
 total_usd = "${0:.2F}".format(total_price)
 print("TOTAL PRICE: " + total_usd)
@@ -79,25 +86,3 @@ print("TOTAL PRICE: " + total_usd)
 print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
-
-#>  ... Chocolate Sandwich Cookies ($3.50)
-#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
-#>  ... Dry Nose Oil ($21.99)
-#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
-#>  ... Cut Russet Potatoes Steam N' Mash ($4.25)
-#>  ... Mint Chocolate Flavored Syrup ($4.50)
-#>  ... Chocolate Fudge Layer Cake ($18.50)
-#> ---------------------------------
-#> SUBTOTAL: $61.24
-#> TAX: $3.67
-#> TOTAL: $64.91
-
-
-#A grocery store name of your choice.
-#A grocery store phone number and/or website URL and/or address of choice.
-#The date and time of the beginning of the checkout process, formatted in a human-friendly way.
-#The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $1.50).
-#The total cost of all shopping cart items, formatted as US dollars and cents (e.g. $4.50), calculated as the sum of their prices.
-#The amount of tax owed, calculated by multiplying the total cost by a District of Columbia sales tax rate of 6%.
-#The total amount owed, formatted as US dollars and cents (e.g. $4.77), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items.
-#A friendly message thanking the customer and/or encouraging the customer to shop again.
