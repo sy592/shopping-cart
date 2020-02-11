@@ -1,10 +1,19 @@
     #shopping_cart.py
 
+#Import environement variable TAX_RATE
 from dotenv import load_dotenv
 import os
 load_dotenv()
 tax_rate = os.getenv("TAX_RATE", default="0.0875")
 tax_rate = float(tax_rate)
+
+#Import email function
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "OOPS, please set env var called 'SENDGRID_API_KEY'")
+MY_ADDRESS = os.environ.get("MY_EMAIL_ADDRESS", "OOPS, please set env var called 'MY_EMAIL_ADDRESS'")
+client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
+print("CLIENT:", type(client))
 
 ##################
 #PRODUCT DATABASE#
@@ -78,6 +87,9 @@ f = open(filename, 'w')
 #Source: https://www.tutorialspoint.com/python3/time_strftime.htm
 #Source: https://stackoverflow.com/questions/12517451/automatically-creating-directories-with-file-output
 
+#Creating Template
+temp_html_content=""
+
 #print grocery information
 print("---------------------------------")
 print("SUNING FOODS GROCERY")
@@ -111,6 +123,10 @@ for selected_id in selected_ids:
     item_str = " + " + matching_product["name"] + " " + price_usd
     print(item_str)
     f.write(item_str + "\n")
+
+    temp_html_content+="<li>You ordered: "
+    temp_html_content+=matching_product["name"]
+    temp_html_content+=" </li>"
         
 #print subtotal price, sales tax, and total
 print("---------------------------------")
@@ -118,7 +134,7 @@ f.write("---------------------------------\n")
 subtotal_usd = "${0:.2F}".format(subtotal_price)
 print("SUBTOTAL PRICE: " + subtotal_usd)
 f.write("SUBTOTAL PRICE: " + subtotal_usd + "\n")
-#calculate and print tax amount by using DC sales tax - 6%
+#calculate and print tax amount by using NY sales tax - 6%
 tax = subtotal_price * tax_rate
 tax_usd = "${0:.2F}".format(tax)
 print("SALES TAX: " + tax_usd)
@@ -139,3 +155,26 @@ f.write("THANKS, SEE YOU AGAIN SOON!\n")
 f.write("---------------------------------")
 
 f.close()
+
+print("Do you want to receieve receipts by email? Please enter 'y' or 'n'")
+if(input()=="y"):
+	subject = "Your Receipt from the Green Grocery Store"
+	html_content ="<img src='https://www.shareicon.net/data/128x128/2016/05/04/759867_food_512x512.png'><h3>Hello this is your receipt</h3><p>Date: "
+	html_content+=now.strftime("%Y-%m-%d %I:%M:%S %p")
+	html_content+="</p><p>Total: "
+	html_content+=str(total_usd)
+	html_content+="</p><ul>"
+	html_content+=temp_html_content
+	html_content+="</ul>"
+	print("HTML:", html_content)
+	client_email = input("Please Enter Your Email Address: ")
+	message = Mail(from_email=MY_ADDRESS, to_emails=client_email, subject=subject, html_content=html_content)
+	try:
+	    response = client.send(message)
+	    print("RESPONSE:", type(response)) #> <class 'python_http_client.client.Response'>
+	    print(response.status_code) #> 202 indicates SUCCESS
+	    print(response.body)
+	    print(response.headers)
+
+	except Exception as e:
+	    print("OOPS", e.message)

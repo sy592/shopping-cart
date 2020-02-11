@@ -11,6 +11,10 @@ Clone or download from [GitHub source] (https://github.com/sy592/shopping-cart),
 cd shopping-cart
 '''
 
+## Additional Packages Via Command-Line
+
+install python-dotenv
+
 ## Usage
 
 Run the program
