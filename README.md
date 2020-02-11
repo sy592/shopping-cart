@@ -13,9 +13,7 @@ cd shopping-cart
 
 ## Additional Packages Via Command-Line
 
-[Sales Tax]
 pip install python-dotenv
-[Send Receipts to Email]
 pip install sendgrid==6.0.5
 
 ## Usage
