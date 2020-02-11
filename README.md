@@ -2,12 +2,10 @@
 
 [Project Description](https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/projects/shopping-cart.md) posted on course page.
 
-![Test Image 1]
-
 
 ## Installation
 
-Clone or download from [Suning GitHub Repository Shopping Cart Project](https://github.com/sy592/shopping-cart), then navigate int othe project repository:
+Clone or download from [Suning GitHub Repository Shopping Cart Project](https://github.com/sy592/shopping-cart), then navigate into the project repository:
 
 ```
 sh
@@ -31,9 +29,9 @@ pip install python-dotenv
 pip install sendgrid==6.0.5
 ```
 **Writing Receipts to File**
->The program can write the receipt information into >a new ".txt" file saved in a new "receipts" directory inside the project repository. The clerk's printer-connected computer is able to actually print a paper receipt from the information contained in this file.
+>The program can write the receipt information into a new ".txt" file saved in a new "receipts" directory inside the project repository. The clerk's printer-connected computer is able to actually print a paper receipt from the information contained in this file.
 >
->Each text file is amed according to the date and time the checkout process started (e.g. "/receipts/2019-07-04-15-43-13-579531.txt", where >the numbers represent the year, month, day, >24-hour-style hour, minute, second, and >milliseconds/microseconds, respectively).
+>Each text file is amed according to the date and time the checkout process started (e.g. "/receipts/2019-07-04-15-43-13-579531.txt", where the numbers represent the year, month, day, 24-hour-style hour, minute, second, and milliseconds/microseconds, respectively).
 
 
 ## Usage
