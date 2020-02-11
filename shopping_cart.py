@@ -1,19 +1,27 @@
     #shopping_cart.py
 
+##################################
+#SETTING UP ENVIRONMENT VARIABLES#
+##################################
+
 #Import environement variable TAX_RATE
 from dotenv import load_dotenv
 import os
 load_dotenv()
 tax_rate = os.getenv("TAX_RATE", default="0.0875")
 tax_rate = float(tax_rate)
+#Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/modules/os.md
+#Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/dotenv.md
 
-#Import email function
+#Import email function and API keys
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "OOPS, please set env var called 'SENDGRID_API_KEY'")
 MY_ADDRESS = os.environ.get("MY_EMAIL_ADDRESS", "OOPS, please set env var called 'MY_EMAIL_ADDRESS'")
 client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
 print("CLIENT:", type(client))
+#Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/sendgrid.md
+#Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/sendgrid.md#email-templates
 
 ##################
 #PRODUCT DATABASE#
@@ -40,7 +48,8 @@ products = [
     {"id":18, "name": "Pizza for One Suprema Frozen Pizza", "department": "frozen", "aisle": "frozen pizza", "price": 12.50},
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
-] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+] 
+# based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 
 ###################
@@ -70,6 +79,7 @@ while True:
 
     else:
        selected_ids.append(selected_id)
+#Sourec: Professor Screencast
 
 
 #############################
@@ -149,7 +159,6 @@ f.write("TOTAL PRICE: " + total_usd + "\n")
 print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
-
 f.write("---------------------------------\n")
 f.write("THANKS, SEE YOU AGAIN SOON!\n")
 f.write("---------------------------------")
@@ -178,3 +187,4 @@ if(input()=="y"):
 
 	except Exception as e:
 	    print("OOPS", e.message)
+#Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/sendgrid.md
